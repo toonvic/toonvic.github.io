@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +24,14 @@
             margin-bottom: 20px;
         }
 
+        #date {
+            margin-top: 10px
+        }
+
         #countdown {
             font-size: 2rem;
-            margin-bottom: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
             white-space: pre-line;
         }
 
@@ -38,16 +44,46 @@
         img {
             max-width: 90%;
             height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .heart {
+            position: absolute;
+            width: 200px;
+            top: 50%;
+            left: 50%;
+            aspect-ratio: 1;
+            border-image: radial-gradient(red 69%, #0000 70%) 84.5% fill/100%;
+            clip-path: polygon(0 0, 100% 0, 100% 41%, 50% 91%, 0 41%);
+            animation: pulse 1s infinite;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.1;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.3;
+            }
         }
     </style>
 </head>
+
 <body>
-    <h1>Quantos tempo já se passou?</h1>
+    <div class="heart"></div>
+    <img src="https://i.imgur.com/lvyb6tr.gif" alt="Imagem do casal">
+    <img id="date" src="https://i.imgur.com/GL3sxfg.gif" alt="Imagem do casal">
+    <img src="https://i.imgur.com/nKQpcJM.gif" alt="Imagem do casal">
     <div id="countdown">Calculando...</div>
-    <p>"It's Friday, I'm in love."</p>
-    <img src="https://via.placeholder.com/600x400" alt="Imagem do casal">
+    <p>"It's Friday, I'm in love." - The Cure</p>
+    <img src="https://i.imgur.com/N85gsrP.png" alt="Imagem do casal">
 
     <script>
         function calculateTime() {
@@ -69,7 +105,7 @@
             const secondsLeft = seconds % 60;
 
             const countdownElement = document.getElementById("countdown");
-            countdownElement.textContent = 
+            countdownElement.textContent =
                 `${years} anos\n${months} meses\n${daysLeft} dias\n${hoursLeft} horas, ${minutesLeft} minutos e ${secondsLeft} segundos`;
         }
 
@@ -77,4 +113,5 @@
         setInterval(calculateTime, 1000); // Atualiza a cada segundo
     </script>
 </body>
+
 </html>
